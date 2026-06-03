@@ -1,4 +1,4 @@
-export { setLoggingEnabled } from './setLoggingEnabled'
+export { logDebug } from './logDebug'
 export { logError } from './logError'
 export { logWarn } from './logWarn'
-export { logDebug } from './logDebug'
+export { setLoggingEnabled } from './setLoggingEnabled'

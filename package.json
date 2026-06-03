@@ -13,6 +13,11 @@
       "types": "./dist/src/log/index.d.ts",
       "import": "./dist/log.es.mjs",
       "require": "./dist/log.cjs.js"
+    },
+    "./device": {
+      "types": "./dist/src/device/index.d.ts",
+      "import": "./dist/device.es.mjs",
+      "require": "./dist/device.cjs.js"
     }
   },
   "scripts": {

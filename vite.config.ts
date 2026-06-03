@@ -8,6 +8,7 @@ import dts from 'vite-plugin-dts'
  */
 const entries = {
   log: resolve(__dirname, 'src/log/index.ts'),
+  device: resolve(__dirname, 'src/device/index.ts'),
 }
 
 export default defineConfig({

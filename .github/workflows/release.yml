@@ -1,0 +1,81 @@
+name: Release
+
+# Manual release: pick a bump type and this workflow versions, builds, publishes
+# to npm, and pushes the version commit + tag.
+#
+# Auth is tokenless via npm Trusted Publishing (OIDC): npmjs.com is configured
+# with this repo + workflow as a trusted publisher, so pnpm exchanges the GitHub
+# OIDC id-token for a short-lived publish credential. No NPM_TOKEN required, and
+# provenance attestations are generated automatically (public source repo).
+on:
+  workflow_dispatch:
+    inputs:
+      release_type:
+        description: 'Semver bump (use "none" to publish the current package.json version as-is)'
+        type: choice
+        options:
+          - none
+          - patch
+          - minor
+          - major
+        default: patch
+
+permissions:
+  contents: write # push the version commit + tag
+  id-token: write # OIDC trusted publishing + provenance
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      # No version pin: pnpm/action-setup reads it from package.json "packageManager".
+      - uses: pnpm/action-setup@v6
+
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 24
+          registry-url: 'https://registry.npmjs.org'
+          cache: pnpm
+
+      # --ignore-scripts: skip the `prepare` build during install so the working
+      # tree stays clean for `pnpm version` (we build explicitly below).
+      - run: pnpm install --frozen-lockfile --ignore-scripts
+
+      - name: Quality gate
+        run: |
+          pnpm run type-check
+          pnpm run lint
+          pnpm run test
+          pnpm run build
+
+      - name: Configure git author
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+      - name: Bump version and tag
+        if: ${{ inputs.release_type != 'none' }}
+        env:
+          RELEASE_TYPE: ${{ inputs.release_type }}
+        run: |
+          pnpm version "$RELEASE_TYPE" -m "release: %s"
+
+      # Tokenless publish via OIDC trusted publishing (configured on npmjs.com).
+      # pnpm detects the OIDC environment and exchanges the id-token for a
+      # short-lived credential. --ignore-scripts avoids re-running
+      # prepare/prepublishOnly (already covered by the quality gate above).
+      - name: Publish to npm
+        run: pnpm publish --no-git-checks --ignore-scripts --access public
+
+      - name: Push version commit and tag
+        if: ${{ inputs.release_type != 'none' }}
+        run: git push --follow-tags origin HEAD:main
+
+      - name: Release failed notice
+        if: failure()
+        run: |
+          echo "::warning title=Release failed::If the publish step failed on auth, check that npm Trusted Publishing is configured for this package on npmjs.com (Settings -> Trusted publishing -> GitHub Actions) with organization 'favish', repository 'staffbase-utils', workflow 'release.yml', allowed action 'npm publish'. The workflow needs 'id-token: write' (set) and the package/version must not already exist."

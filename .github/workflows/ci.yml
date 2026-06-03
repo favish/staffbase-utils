@@ -1,0 +1,32 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+
+      # No version pin: pnpm/action-setup reads it from package.json "packageManager".
+      - uses: pnpm/action-setup@v6
+
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 24
+          cache: pnpm
+
+      # --ignore-scripts so the `prepare` script does not run a full build on install.
+      - run: pnpm install --frozen-lockfile --ignore-scripts
+
+      - run: pnpm run type-check
+      - run: pnpm run lint
+      - run: pnpm run test
+      - run: pnpm run build

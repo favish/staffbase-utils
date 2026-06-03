@@ -48,18 +48,22 @@ forward to the matching `console` method only while enabled.
 ## Releasing
 
 Publishing runs through GitHub Actions with npm **Trusted Publishing (OIDC)** — no
-tokens, no OTP. To cut a release:
+tokens, no OTP — same as `@favish/staffbase-drawer` and `@favish/staffbase-cli`.
 
-1. Bump the version in `package.json` (and commit).
-2. Tag it and push:
-   ```bash
-   git tag v0.1.1
-   git push origin main --tags
-   ```
-3. The `Publish to npm` workflow (`.github/workflows/publish.yml`) builds, verifies,
-   and publishes the version from `package.json` with provenance.
+Trigger the `Release` workflow (`.github/workflows/release.yml`) manually and pick a
+bump type:
 
-The published version is taken from `package.json`; the tag is only the trigger.
+```bash
+gh workflow run release.yml -f release_type=patch   # or minor / major / none
+```
+
+(or run it from the GitHub Actions tab). The workflow runs the quality gate
+(type-check, lint, test, build), bumps + tags the version, publishes to npm with
+provenance, and pushes the version commit + tag back to `main`. Use
+`release_type=none` to publish the current `package.json` version as-is.
+
+CI (`.github/workflows/ci.yml`) runs the same quality gate on every push and PR to
+`main`.
 
 ## Development
 

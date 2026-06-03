@@ -1,0 +1,41 @@
+name: Publish to npm
+
+# Publishes @favish/staffbase-utils via npm Trusted Publishing (OIDC).
+# No NPM_TOKEN: npm trusts this workflow in favish/staffbase-utils and mints a
+# short-lived credential from the GitHub OIDC id-token. Triggered by pushing a
+# version tag (e.g. v0.1.1); the published version is whatever is in package.json.
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  id-token: write # required for OIDC trusted publishing + provenance
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd # v5
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@b906affcce14559ad1aafd4ab0e942779e9f58b1 # v4
+
+      - name: Setup Node
+        uses: actions/setup-node@a0853c24544627f65ddf259abe73b1d18a591444 # v5
+        with:
+          node-version: 22
+          registry-url: 'https://registry.npmjs.org'
+
+      - name: Upgrade npm (OIDC trusted publishing needs npm >= 11.5.1)
+        run: npm install -g npm@latest
+
+      - name: Install, verify and build
+        run: pnpm install --frozen-lockfile # runs `prepare`: format, type-check, lint, build
+
+      - name: Publish
+        run: npm publish --access public --ignore-scripts

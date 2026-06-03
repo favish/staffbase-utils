@@ -1,0 +1,73 @@
+{
+  "name": "@favish/staffbase-utils",
+  "version": "0.1.0",
+  "description": "Shared internal/host utilities for Staffbase widgets",
+  "author": "Favish <dev@favish.com>",
+  "packageManager": "pnpm@11.5.0",
+  "license": "UNLICENSED",
+  "type": "module",
+  "files": ["dist"],
+  "exports": {
+    "./log": {
+      "types": "./dist/src/log/index.d.ts",
+      "import": "./dist/log.es.mjs",
+      "require": "./dist/log.cjs.js"
+    }
+  },
+  "scripts": {
+    "build": "vite build",
+    "check:all": "pnpm run format && pnpm run lint:fix && pnpm run type-check && pnpm run test",
+    "format": "prettier --write \"src/**/*\" --list-different",
+    "lint": "eslint ./src",
+    "lint:fix": "eslint ./src --fix",
+    "prepare": "pnpm run format && pnpm run type-check && pnpm run lint:fix && pnpm run build",
+    "prepublishOnly": "pnpm run test",
+    "publish:major": "pnpm run prepare && pnpm version major && pnpm publish",
+    "publish:minor": "pnpm run prepare && pnpm version minor && pnpm publish",
+    "publish:patch": "pnpm run prepare && pnpm version patch && pnpm publish",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "type-check": "tsc --pretty --noEmit",
+    "type-check:watch": "tsc --pretty --noEmit --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/favish/staffbase-utils"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/",
+    "access": "public"
+  },
+  "peerDependencies": {
+    "react": "^18.0.0 || ^19.0.0",
+    "react-dom": "^18.0.0 || ^19.0.0"
+  },
+  "peerDependenciesMeta": {
+    "react": { "optional": true },
+    "react-dom": { "optional": true }
+  },
+  "devDependencies": {
+    "@eslint/eslintrc": "^3.3.5",
+    "@eslint/js": "^10.0.1",
+    "@testing-library/jest-dom": "^6.9.1",
+    "@types/jest": "^30.0.0",
+    "@types/node": "^25",
+    "@typescript-eslint/eslint-plugin": "^8.60.0",
+    "@typescript-eslint/parser": "^8.60.0",
+    "eslint": "^10.4.0",
+    "eslint-config-prettier": "10.1.8",
+    "eslint-import-resolver-typescript": "^4.4.4",
+    "eslint-plugin-import": "^2.32.0",
+    "eslint-plugin-jsdoc": "^63.0.0",
+    "eslint-plugin-react": "^7.37.5",
+    "jest": "^30.4.2",
+    "jest-environment-jsdom": "^30.4.1",
+    "prettier": "^3.8.3",
+    "prettier-plugin-organize-imports": "^4.3.0",
+    "ts-jest": "^29.4.11",
+    "typescript": "^6.0.3",
+    "typescript-eslint": "^8.60.0",
+    "vite": "^8.0.14",
+    "vite-plugin-dts": "^5.0.1"
+  }
+}

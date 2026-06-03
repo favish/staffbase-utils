@@ -1,0 +1,11 @@
+.DS_Store
+.idea
+.vscode
+dist
+dist-preview
+install-state.gz
+node_modules
+# CocoIndex Code (ccc)
+/.cocoindex_code/
+# CodeGraph local index
+/.codegraph/

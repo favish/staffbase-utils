@@ -14,6 +14,11 @@
       "import": "./dist/api.es.mjs",
       "require": "./dist/api.cjs.js"
     },
+    "./content": {
+      "types": "./dist/src/content/index.d.ts",
+      "import": "./dist/content.es.mjs",
+      "require": "./dist/content.cjs.js"
+    },
     "./log": {
       "types": "./dist/src/log/index.d.ts",
       "import": "./dist/log.es.mjs",

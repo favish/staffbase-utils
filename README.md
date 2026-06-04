@@ -24,9 +24,10 @@ minimumReleaseAgeExclude:
 | Subpath | Exports |
 | --- | --- |
 | `@favish/staffbase-utils/api` | `fetchJson`, `fetchAllPaginated`, `ApiError` |
+| `@favish/staffbase-utils/content` | `resolveLocalizedContent`, `resolveActiveLanguage`, `detectEditorLanguage`, `detectPreviewLanguage` |
 | `@favish/staffbase-utils/log` | `logError`, `logWarn`, `logDebug`, `setLoggingEnabled` |
 | `@favish/staffbase-utils/dom` | `getDynamicClasses` |
-| `@favish/staffbase-utils/types` | `Channel`, `ChannelLink`, `ChannelLinkParameter`, `DropdownOption` (type-only) |
+| `@favish/staffbase-utils/types` | `Channel`, `ChannelLink`, `ChannelLinkParameter`, `DropdownOption`, `LocalizedContent`, `ArticleImage`, `ArticleImageVariant` (type-only) |
 
 More modules (`/env`, `/device`, `/html`, `/links`, `/widgets`) are added per the
 delivery roadmap; each is its own subpath so consumers only bundle what they import.

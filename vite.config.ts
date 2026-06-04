@@ -8,6 +8,7 @@ import dts from 'vite-plugin-dts'
  */
 const entries = {
   api: resolve(__dirname, 'src/api/index.ts'),
+  content: resolve(__dirname, 'src/content/index.ts'),
   log: resolve(__dirname, 'src/log/index.ts'),
   device: resolve(__dirname, 'src/device/index.ts'),
   dom: resolve(__dirname, 'src/dom/index.ts'),

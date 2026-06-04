@@ -5,6 +5,7 @@
   "author": "Favish <dev@favish.com>",
   "packageManager": "pnpm@11.5.0",
   "license": "UNLICENSED",
+  "sideEffects": false,
   "files": [
     "dist"
   ],
@@ -58,6 +59,11 @@
       "types": "./dist/src/shadow/index.d.ts",
       "import": "./dist/shadow.es.mjs",
       "require": "./dist/shadow.cjs.js"
+    },
+    "./shadow/portal": {
+      "types": "./dist/src/shadow/portal/index.d.ts",
+      "import": "./dist/shadow/portal.es.mjs",
+      "require": "./dist/shadow/portal.cjs.js"
     },
     "./shadow/react": {
       "types": "./dist/src/shadow/react/index.d.ts",

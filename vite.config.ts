@@ -16,6 +16,7 @@ const entries = {
   links: resolve(__dirname, 'src/links/index.ts'),
   'links/react': resolve(__dirname, 'src/links/react/index.ts'),
   shadow: resolve(__dirname, 'src/shadow/index.ts'),
+  'shadow/portal': resolve(__dirname, 'src/shadow/portal/index.ts'),
   'shadow/react': resolve(__dirname, 'src/shadow/react/index.ts'),
   widgets: resolve(__dirname, 'src/widgets/index.ts'),
   'widgets/react': resolve(__dirname, 'src/widgets/react/index.ts'),

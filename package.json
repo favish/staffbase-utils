@@ -19,6 +19,11 @@
       "import": "./dist/device.es.mjs",
       "require": "./dist/device.cjs.js"
     },
+    "./dom": {
+      "types": "./dist/src/dom/index.d.ts",
+      "import": "./dist/dom.es.mjs",
+      "require": "./dist/dom.cjs.js"
+    },
     "./html": {
       "types": "./dist/src/html/index.d.ts",
       "import": "./dist/html.es.mjs",

@@ -1,6 +1,7 @@
 import DOMPurify from 'dompurify'
 
 import { customElementHandling } from './customElementHandling'
+import { logRemovedEmbeds } from './logRemovedEmbeds'
 
 /**
  * Strict sanitizer for untrusted snippet/teaser HTML rendered through a
@@ -15,5 +16,10 @@ import { customElementHandling } from './customElementHandling'
  * @param {string} html - Raw HTML string from the API.
  * @returns {string} Sanitized HTML.
  */
-export const sanitizeHtml = (html: string): string =>
-  DOMPurify.sanitize(html, { CUSTOM_ELEMENT_HANDLING: customElementHandling })
+export const sanitizeHtml = (html: string): string => {
+  const clean = DOMPurify.sanitize(html, {
+    CUSTOM_ELEMENT_HANDLING: customElementHandling,
+  })
+  logRemovedEmbeds(DOMPurify.removed)
+  return clean
+}

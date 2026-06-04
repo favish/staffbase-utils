@@ -23,6 +23,11 @@
       "types": "./dist/src/html/index.d.ts",
       "import": "./dist/html.es.mjs",
       "require": "./dist/html.cjs.js"
+    },
+    "./links": {
+      "types": "./dist/src/links/index.d.ts",
+      "import": "./dist/links.es.mjs",
+      "require": "./dist/links.cjs.js"
     }
   },
   "scripts": {

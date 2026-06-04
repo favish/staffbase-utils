@@ -10,6 +10,7 @@ const entries = {
   log: resolve(__dirname, 'src/log/index.ts'),
   device: resolve(__dirname, 'src/device/index.ts'),
   html: resolve(__dirname, 'src/html/index.ts'),
+  links: resolve(__dirname, 'src/links/index.ts'),
 }
 
 export default defineConfig({

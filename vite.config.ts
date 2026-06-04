@@ -22,6 +22,10 @@ const entries = {
   widgets: resolve(__dirname, 'src/widgets/index.ts'),
   'widgets/react': resolve(__dirname, 'src/widgets/react/index.ts'),
   types: resolve(__dirname, 'src/types/content/index.ts'),
+  'types/news': resolve(__dirname, 'src/types/news/index.ts'),
+  'types/pages': resolve(__dirname, 'src/types/pages/index.ts'),
+  'types/user': resolve(__dirname, 'src/types/user/index.ts'),
+  'types/groups': resolve(__dirname, 'src/types/groups/index.ts'),
 }
 
 export default defineConfig({

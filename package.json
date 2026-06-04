@@ -84,10 +84,34 @@
       "types": "./dist/src/types/content/index.d.ts",
       "import": "./dist/types.es.mjs",
       "require": "./dist/types.cjs.js"
+    },
+    "./types/news": {
+      "types": "./dist/src/types/news/index.d.ts",
+      "import": "./dist/types/news.es.mjs",
+      "require": "./dist/types/news.cjs.js"
+    },
+    "./types/pages": {
+      "types": "./dist/src/types/pages/index.d.ts",
+      "import": "./dist/types/pages.es.mjs",
+      "require": "./dist/types/pages.cjs.js"
+    },
+    "./types/user": {
+      "types": "./dist/src/types/user/index.d.ts",
+      "import": "./dist/types/user.es.mjs",
+      "require": "./dist/types/user.cjs.js"
+    },
+    "./types/groups": {
+      "types": "./dist/src/types/groups/index.d.ts",
+      "import": "./dist/types/groups.es.mjs",
+      "require": "./dist/types/groups.cjs.js"
     }
   },
   "scripts": {
     "build": "vite build",
+    "codegen:news": "openapi-typescript https://developers.staffbase.com/openapi/newsapi.yaml -o src/types/news/generated/newsApi.ts",
+    "codegen:pages": "openapi-typescript https://developers.staffbase.com/openapi/pagesapi.yaml -o src/types/pages/generated/pagesApi.ts",
+    "codegen:user": "openapi-typescript https://developers.staffbase.com/openapi/userapi.yaml -o src/types/user/generated/userApi.ts",
+    "codegen:groups": "openapi-typescript https://developers.staffbase.com/openapi/groupsapi.yaml -o src/types/groups/generated/groupsApi.ts",
     "check:all": "pnpm run format && pnpm run lint:fix && pnpm run type-check && pnpm run test",
     "format": "prettier --write \"src/**/*\" --list-different",
     "lint": "eslint ./src",
@@ -144,6 +168,7 @@
     "eslint-plugin-react": "^7.37.5",
     "jest": "^30.4.2",
     "jest-environment-jsdom": "^30.4.1",
+    "openapi-typescript": "^7.13.0",
     "prettier": "^3.8.3",
     "prettier-plugin-organize-imports": "^4.3.0",
     "ts-jest": "^29.4.11",

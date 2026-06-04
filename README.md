@@ -25,17 +25,32 @@ minimumReleaseAgeExclude:
 | --- | --- |
 | `@favish/staffbase-utils/api` | `fetchJson`, `fetchAllPaginated`, `ApiError` |
 | `@favish/staffbase-utils/content` | `resolveLocalizedContent`, `resolveActiveLanguage`, `detectEditorLanguage`, `detectPreviewLanguage` |
+| `@favish/staffbase-utils/log` | `logError`, `logWarn`, `logDebug`, `setLoggingEnabled` |
+| `@favish/staffbase-utils/device` | `isMobile`, `isMobileOrWebview`, `isMobilePlatform`, `isMobileViewport`, `isNativeApp` |
+| `@favish/staffbase-utils/dom` | `getDynamicClasses` |
+| `@favish/staffbase-utils/host` | `getStaffbaseCsrfToken` |
+| `@favish/staffbase-utils/html` | `sanitizeHtml`, `sanitizeArticleHtml`, `cleanHTML`, `stripHtmlTags` |
+| `@favish/staffbase-utils/links` | `openStaffbaseAware`, `tryOpenWithStaffbase`, `normalizeInAppLinks`, `getInAppOpenLinkTarget`, `isAllowedIframeSrc`, `isSafeNavigationHref` |
 | `@favish/staffbase-utils/links/react` | `useInAppLinkHandling` (React peer) |
+| `@favish/staffbase-utils/widgets` | `renderWidgets` |
+| `@favish/staffbase-utils/widgets/react` | `useRenderWidgets` (React peer) |
 | `@favish/staffbase-utils/shadow` | `injectShadowStyles`, `isShadowRoot` |
 | `@favish/staffbase-utils/shadow/portal` | `PortalContainerProvider`, `usePortalContainer` (React peer only, no Emotion) |
 | `@favish/staffbase-utils/shadow/react` | `ensureShadowMount` (+ re-exports portal) (React + @emotion/cache peers) |
-| `@favish/staffbase-utils/log` | `logError`, `logWarn`, `logDebug`, `setLoggingEnabled` |
-| `@favish/staffbase-utils/dom` | `getDynamicClasses` |
-| `@favish/staffbase-utils/host` | `getStaffbaseCsrfToken` |
 | `@favish/staffbase-utils/types` | `Channel`, `ChannelLink`, `ChannelLinkParameter`, `DropdownOption`, `LocalizedContent`, `ArticleImage`, `ArticleImageVariant` (type-only) |
+| `@favish/staffbase-utils/types/news` | `Post` (+ `PostAuthor`, `PostAuthorAvatar`, `PostLikes`, `PostComments`, `PostSource`, `PostAcknowledgements`, `PostLayout`), `CreatePostBody`, `UpdatePostBody` |
+| `@favish/staffbase-utils/types/pages` | `Page`, `PageContent`, `PageAccess`, `CreatePagePayload`, `UpdatePagePayload` |
+| `@favish/staffbase-utils/types/user` | `User` (+ `UserName`, `UserEmail`, `UserRole`, `UserConfig`, `UserCreation`, `UserAvatar`, `UserAvatarVariant`, `UserProfile`, `UserSecret`, `UserRecoveryCode`), `CreateUserBody`, `UpdateUserBody` |
+| `@favish/staffbase-utils/types/groups` | `Group` (+ `GroupConfig`, `GroupConfigLocalization`, `GroupUser`, `GroupBranch`, `GroupAccessors`, `GroupAdminsWithGroups`, `GroupUsers`), `CreateGroupBody`, `UpdateGroupBody` |
 
-More modules (`/env`, `/device`, `/html`, `/links`, `/widgets`) are added per the
-delivery roadmap; each is its own subpath so consumers only bundle what they import.
+### Type modules (`types/*`)
+
+Read types are hand-curated and validated field-by-field against live Staffbase
+responses, because the official OpenAPI specs declare their read payloads as
+`unknown` (news) or describe the management API rather than the runtime shape
+(users/groups). Write payloads (`Create*` / `Update*`) are generated directly
+from the official specs and refreshed with `pnpm run codegen:news|pages|user|groups`
+(generated output lives under each module's `generated/` folder).
 
 ## Logging
 

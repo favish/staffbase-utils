@@ -1,6 +1,6 @@
 {
   "name": "@favish/staffbase-utils",
-  "version": "0.9.0",
+  "version": "0.10.0",
   "description": "Shared internal/host utilities for Staffbase widgets",
   "author": "Favish <dev@favish.com>",
   "packageManager": "pnpm@11.5.0",

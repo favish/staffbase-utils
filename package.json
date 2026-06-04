@@ -49,6 +49,11 @@
       "import": "./dist/widgets.es.mjs",
       "require": "./dist/widgets.cjs.js"
     },
+    "./links/react": {
+      "types": "./dist/src/links/react/index.d.ts",
+      "import": "./dist/links/react.es.mjs",
+      "require": "./dist/links/react.cjs.js"
+    },
     "./widgets/react": {
       "types": "./dist/src/widgets/react/index.d.ts",
       "import": "./dist/widgets/react.es.mjs",

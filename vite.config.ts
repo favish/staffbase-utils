@@ -14,6 +14,7 @@ const entries = {
   dom: resolve(__dirname, 'src/dom/index.ts'),
   html: resolve(__dirname, 'src/html/index.ts'),
   links: resolve(__dirname, 'src/links/index.ts'),
+  'links/react': resolve(__dirname, 'src/links/react/index.ts'),
   widgets: resolve(__dirname, 'src/widgets/index.ts'),
   'widgets/react': resolve(__dirname, 'src/widgets/react/index.ts'),
   types: resolve(__dirname, 'src/types/content/index.ts'),

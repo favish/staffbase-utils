@@ -1,0 +1,1 @@
+export { useRenderWidgets } from './useRenderWidgets'

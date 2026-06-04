@@ -28,6 +28,16 @@
       "types": "./dist/src/links/index.d.ts",
       "import": "./dist/links.es.mjs",
       "require": "./dist/links.cjs.js"
+    },
+    "./widgets": {
+      "types": "./dist/src/widgets/index.d.ts",
+      "import": "./dist/widgets.es.mjs",
+      "require": "./dist/widgets.cjs.js"
+    },
+    "./widgets/react": {
+      "types": "./dist/src/widgets/react/index.d.ts",
+      "import": "./dist/widgets/react.es.mjs",
+      "require": "./dist/widgets/react.cjs.js"
     }
   },
   "scripts": {
@@ -72,6 +82,7 @@
     "@testing-library/jest-dom": "^6.9.1",
     "@types/jest": "^30.0.0",
     "@types/node": "^25",
+    "@types/react": "19.2.16",
     "@typescript-eslint/eslint-plugin": "^8.60.0",
     "@typescript-eslint/parser": "^8.60.0",
     "eslint": "^10.4.0",

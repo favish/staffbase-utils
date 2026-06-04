@@ -11,6 +11,8 @@ const entries = {
   device: resolve(__dirname, 'src/device/index.ts'),
   html: resolve(__dirname, 'src/html/index.ts'),
   links: resolve(__dirname, 'src/links/index.ts'),
+  widgets: resolve(__dirname, 'src/widgets/index.ts'),
+  'widgets/react': resolve(__dirname, 'src/widgets/react/index.ts'),
 }
 
 export default defineConfig({

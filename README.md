@@ -31,6 +31,7 @@ minimumReleaseAgeExclude:
 | `@favish/staffbase-utils/shadow/react` | `ensureShadowMount` (+ re-exports portal) (React + @emotion/cache peers) |
 | `@favish/staffbase-utils/log` | `logError`, `logWarn`, `logDebug`, `setLoggingEnabled` |
 | `@favish/staffbase-utils/dom` | `getDynamicClasses` |
+| `@favish/staffbase-utils/host` | `getStaffbaseCsrfToken` |
 | `@favish/staffbase-utils/types` | `Channel`, `ChannelLink`, `ChannelLinkParameter`, `DropdownOption`, `LocalizedContent`, `ArticleImage`, `ArticleImageVariant` (type-only) |
 
 More modules (`/env`, `/device`, `/html`, `/links`, `/widgets`) are added per the

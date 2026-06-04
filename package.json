@@ -35,6 +35,11 @@
       "import": "./dist/dom.es.mjs",
       "require": "./dist/dom.cjs.js"
     },
+    "./host": {
+      "types": "./dist/src/host/index.d.ts",
+      "import": "./dist/host.es.mjs",
+      "require": "./dist/host.cjs.js"
+    },
     "./html": {
       "types": "./dist/src/html/index.d.ts",
       "import": "./dist/html.es.mjs",

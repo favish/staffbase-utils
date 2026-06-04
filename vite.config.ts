@@ -12,6 +12,7 @@ const entries = {
   log: resolve(__dirname, 'src/log/index.ts'),
   device: resolve(__dirname, 'src/device/index.ts'),
   dom: resolve(__dirname, 'src/dom/index.ts'),
+  host: resolve(__dirname, 'src/host/index.ts'),
   html: resolve(__dirname, 'src/html/index.ts'),
   links: resolve(__dirname, 'src/links/index.ts'),
   'links/react': resolve(__dirname, 'src/links/react/index.ts'),

@@ -1,3 +1,5 @@
 export { isMobile } from './isMobile'
 export { isMobileOrWebview } from './isMobileOrWebview'
+export { isMobilePlatform } from './isMobilePlatform'
 export { isMobileViewport } from './isMobileViewport'
+export { isNativeApp } from './isNativeApp'

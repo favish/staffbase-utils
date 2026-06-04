@@ -9,6 +9,7 @@ import dts from 'vite-plugin-dts'
 const entries = {
   log: resolve(__dirname, 'src/log/index.ts'),
   device: resolve(__dirname, 'src/device/index.ts'),
+  html: resolve(__dirname, 'src/html/index.ts'),
 }
 
 export default defineConfig({
@@ -29,7 +30,13 @@ export default defineConfig({
         format === 'es' ? `${entryName}.es.mjs` : `${entryName}.cjs.js`,
     },
     rollupOptions: {
-      external: ['react', 'react-dom', 'react-dom/client', 'react/jsx-runtime'],
+      external: [
+        'dompurify',
+        'react',
+        'react-dom',
+        'react-dom/client',
+        'react/jsx-runtime',
+      ],
       output: {
         globals: {
           react: 'React',

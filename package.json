@@ -18,6 +18,11 @@
       "types": "./dist/src/device/index.d.ts",
       "import": "./dist/device.es.mjs",
       "require": "./dist/device.cjs.js"
+    },
+    "./html": {
+      "types": "./dist/src/html/index.d.ts",
+      "import": "./dist/html.es.mjs",
+      "require": "./dist/html.cjs.js"
     }
   },
   "scripts": {
@@ -79,5 +84,8 @@
     "typescript-eslint": "^8.60.0",
     "vite": "^8.0.14",
     "vite-plugin-dts": "^5.0.1"
+  },
+  "dependencies": {
+    "dompurify": "^3.4.8"
   }
 }

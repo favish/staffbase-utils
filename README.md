@@ -26,6 +26,8 @@ minimumReleaseAgeExclude:
 | `@favish/staffbase-utils/api` | `fetchJson`, `fetchAllPaginated`, `ApiError` |
 | `@favish/staffbase-utils/content` | `resolveLocalizedContent`, `resolveActiveLanguage`, `detectEditorLanguage`, `detectPreviewLanguage` |
 | `@favish/staffbase-utils/links/react` | `useInAppLinkHandling` (React peer) |
+| `@favish/staffbase-utils/shadow` | `injectShadowStyles`, `isShadowRoot` |
+| `@favish/staffbase-utils/shadow/react` | `ensureShadowMount`, `PortalContainerProvider`, `usePortalContainer` (React + @emotion/cache peers) |
 | `@favish/staffbase-utils/log` | `logError`, `logWarn`, `logDebug`, `setLoggingEnabled` |
 | `@favish/staffbase-utils/dom` | `getDynamicClasses` |
 | `@favish/staffbase-utils/types` | `Channel`, `ChannelLink`, `ChannelLinkParameter`, `DropdownOption`, `LocalizedContent`, `ArticleImage`, `ArticleImageVariant` (type-only) |

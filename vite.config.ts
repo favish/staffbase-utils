@@ -15,6 +15,8 @@ const entries = {
   html: resolve(__dirname, 'src/html/index.ts'),
   links: resolve(__dirname, 'src/links/index.ts'),
   'links/react': resolve(__dirname, 'src/links/react/index.ts'),
+  shadow: resolve(__dirname, 'src/shadow/index.ts'),
+  'shadow/react': resolve(__dirname, 'src/shadow/react/index.ts'),
   widgets: resolve(__dirname, 'src/widgets/index.ts'),
   'widgets/react': resolve(__dirname, 'src/widgets/react/index.ts'),
   types: resolve(__dirname, 'src/types/content/index.ts'),
@@ -39,6 +41,7 @@ export default defineConfig({
     },
     rollupOptions: {
       external: [
+        '@emotion/cache',
         'dompurify',
         'react',
         'react-dom',

@@ -17,10 +17,10 @@ export const isModifiedNativeEvent = (e: NativeLinkEvent): boolean => {
 
   return Boolean(
     e.defaultPrevented ||
-      (typeof button === 'number' && button !== 0) ||
-      metaKey ||
-      ctrlKey ||
-      shiftKey ||
-      altKey,
+    (typeof button === 'number' && button !== 0) ||
+    metaKey ||
+    ctrlKey ||
+    shiftKey ||
+    altKey,
   )
 }

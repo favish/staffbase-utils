@@ -1,5 +1,5 @@
+export type { ResolveLocalizedContentOptions } from '../types/content/ResolveLocalizedContentOptions'
 export { detectEditorLanguage } from './detectEditorLanguage'
 export { detectPreviewLanguage } from './detectPreviewLanguage'
 export { resolveActiveLanguage } from './resolveActiveLanguage'
 export { resolveLocalizedContent } from './resolveLocalizedContent'
-export type { ResolveLocalizedContentOptions } from '../types/content/ResolveLocalizedContentOptions'

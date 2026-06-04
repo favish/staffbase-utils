@@ -1,0 +1,6 @@
+export type { EnsureShadowMountOptions } from '../../types/shadow/EnsureShadowMountOptions'
+export type { PortalContainerProviderProps } from '../../types/shadow/PortalContainerProviderProps'
+export type { ShadowMount } from '../../types/shadow/ShadowMount'
+export { ensureShadowMount } from './ensureShadowMount'
+export { PortalContainerProvider } from './PortalContainerProvider'
+export { usePortalContainer } from './usePortalContainer'

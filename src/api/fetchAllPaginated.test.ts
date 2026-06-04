@@ -55,11 +55,7 @@ describe('fetchAllPaginated', () => {
 
   it('invokes onError when the maxPages cap is hit', async () => {
     // Every page is full (length === limit) so the loop only stops at the cap.
-    mockPages([
-      { data: [1, 2] },
-      { data: [3, 4] },
-      { data: [5, 6] },
-    ])
+    mockPages([{ data: [1, 2] }, { data: [3, 4] }, { data: [5, 6] }])
     const onError = jest.fn()
     const result = await fetchAllPaginated<number>('https://x/items', {
       limit: 2,

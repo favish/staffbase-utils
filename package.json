@@ -54,6 +54,16 @@
       "import": "./dist/links/react.es.mjs",
       "require": "./dist/links/react.cjs.js"
     },
+    "./shadow": {
+      "types": "./dist/src/shadow/index.d.ts",
+      "import": "./dist/shadow.es.mjs",
+      "require": "./dist/shadow.cjs.js"
+    },
+    "./shadow/react": {
+      "types": "./dist/src/shadow/react/index.d.ts",
+      "import": "./dist/shadow/react.es.mjs",
+      "require": "./dist/shadow/react.cjs.js"
+    },
     "./widgets/react": {
       "types": "./dist/src/widgets/react/index.d.ts",
       "import": "./dist/widgets/react.es.mjs",
@@ -90,10 +100,14 @@
     "access": "public"
   },
   "peerDependencies": {
+    "@emotion/cache": "^11.0.0",
     "react": "^18.0.0 || ^19.0.0",
     "react-dom": "^18.0.0 || ^19.0.0"
   },
   "peerDependenciesMeta": {
+    "@emotion/cache": {
+      "optional": true
+    },
     "react": {
       "optional": true
     },
@@ -102,6 +116,7 @@
     }
   },
   "devDependencies": {
+    "@emotion/cache": "11.14.0",
     "@eslint/eslintrc": "^3.3.5",
     "@eslint/js": "^10.0.1",
     "@testing-library/jest-dom": "^6.9.1",

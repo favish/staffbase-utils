@@ -43,6 +43,11 @@
       "types": "./dist/src/widgets/react/index.d.ts",
       "import": "./dist/widgets/react.es.mjs",
       "require": "./dist/widgets/react.cjs.js"
+    },
+    "./types": {
+      "types": "./dist/src/types/content/index.d.ts",
+      "import": "./dist/types.es.mjs",
+      "require": "./dist/types.cjs.js"
     }
   },
   "scripts": {

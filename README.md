@@ -25,6 +25,7 @@ minimumReleaseAgeExclude:
 | --- | --- |
 | `@favish/staffbase-utils/log` | `logError`, `logWarn`, `logDebug`, `setLoggingEnabled` |
 | `@favish/staffbase-utils/dom` | `getDynamicClasses` |
+| `@favish/staffbase-utils/types` | `Channel`, `ChannelLink`, `ChannelLinkParameter`, `DropdownOption` (type-only) |
 
 More modules (`/env`, `/device`, `/html`, `/links`, `/widgets`) are added per the
 delivery roadmap; each is its own subpath so consumers only bundle what they import.

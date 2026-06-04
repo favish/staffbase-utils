@@ -14,6 +14,7 @@ const entries = {
   links: resolve(__dirname, 'src/links/index.ts'),
   widgets: resolve(__dirname, 'src/widgets/index.ts'),
   'widgets/react': resolve(__dirname, 'src/widgets/react/index.ts'),
+  types: resolve(__dirname, 'src/types/content/index.ts'),
 }
 
 export default defineConfig({

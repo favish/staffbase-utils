@@ -23,6 +23,7 @@ minimumReleaseAgeExclude:
 
 | Subpath | Exports |
 | --- | --- |
+| `@favish/staffbase-utils/api` | `fetchJson`, `fetchAllPaginated`, `ApiError` |
 | `@favish/staffbase-utils/log` | `logError`, `logWarn`, `logDebug`, `setLoggingEnabled` |
 | `@favish/staffbase-utils/dom` | `getDynamicClasses` |
 | `@favish/staffbase-utils/types` | `Channel`, `ChannelLink`, `ChannelLinkParameter`, `DropdownOption` (type-only) |

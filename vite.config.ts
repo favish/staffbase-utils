@@ -7,6 +7,7 @@ import dts from 'vite-plugin-dts'
  * ESM uses .mjs so Node treats outputs as ESM in all contexts.
  */
 const entries = {
+  api: resolve(__dirname, 'src/api/index.ts'),
   log: resolve(__dirname, 'src/log/index.ts'),
   device: resolve(__dirname, 'src/device/index.ts'),
   dom: resolve(__dirname, 'src/dom/index.ts'),

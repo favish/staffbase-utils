@@ -9,6 +9,11 @@
     "dist"
   ],
   "exports": {
+    "./api": {
+      "types": "./dist/src/api/index.d.ts",
+      "import": "./dist/api.es.mjs",
+      "require": "./dist/api.cjs.js"
+    },
     "./log": {
       "types": "./dist/src/log/index.d.ts",
       "import": "./dist/log.es.mjs",

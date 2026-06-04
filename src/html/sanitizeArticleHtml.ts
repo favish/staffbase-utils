@@ -1,6 +1,7 @@
 import createDOMPurify from 'dompurify'
 
 import type { SanitizeArticleHtmlOptions } from '../types/html/SanitizeArticleHtmlOptions'
+import { customElementHandling } from './customElementHandling'
 
 // Dedicated DOMPurify instance so the hardening hook below is scoped to this
 // sanitizer and never pollutes the consumer's shared default DOMPurify instance
@@ -47,6 +48,7 @@ export const sanitizeArticleHtml = (
   try {
     return purifier.sanitize(html, {
       USE_PROFILES: { html: true },
+      CUSTOM_ELEMENT_HANDLING: customElementHandling,
       ADD_TAGS: ['iframe'],
       ADD_ATTR: [
         'target',

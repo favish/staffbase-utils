@@ -51,6 +51,15 @@ describe('sanitizeArticleHtml', () => {
     expect(out).toContain('iframe')
   })
 
+  it('keeps embedded-widget custom elements and their attributes', () => {
+    const out = sanitizeArticleHtml(
+      '<news-teaser data-widget-id="abc" channel-article="c|a"></news-teaser>',
+    )
+    expect(out).toContain('news-teaser')
+    expect(out).toContain('data-widget-id="abc"')
+    expect(out).toContain('channel-article="c|a"')
+  })
+
   it('does not leak the guard to a subsequent call', () => {
     sanitizeArticleHtml('<iframe src="https://evil.com"></iframe>', {
       isAllowedIframeSrc: () => false,

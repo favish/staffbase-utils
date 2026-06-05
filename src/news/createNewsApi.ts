@@ -30,10 +30,9 @@ export const createNewsApi = (config: NewsApiConfig): NewsApi => ({
   fetchSpaceName(spaceId: string) {
     return fetchSpaceName(config, spaceId)
   },
-  fetchArticles<TArticle extends Pick<Post, 'published' | 'unpublished'> = Post>(
-    channelId: string,
-    options?: FetchArticlesOptions,
-  ) {
+  fetchArticles<
+    TArticle extends Pick<Post, 'published' | 'unpublished'> = Post,
+  >(channelId: string, options?: FetchArticlesOptions) {
     return fetchArticles<TArticle>(config, channelId, options)
   },
   fetchArticleById<TArticle = Post>(articleId: string) {

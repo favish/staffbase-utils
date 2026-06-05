@@ -45,9 +45,7 @@ export interface NewsApi {
    * @param {string} articleId - The post id.
    * @returns {Promise<TArticle>} The post.
    */
-  fetchArticleById: <TArticle = Post>(
-    articleId: string,
-  ) => Promise<TArticle>
+  fetchArticleById: <TArticle = Post>(articleId: string) => Promise<TArticle>
   /**
    * Acknowledges a post. Fails fast (and reports via onError) when the CSRF
    * token is unavailable, and throws an ApiError on a non-OK response.

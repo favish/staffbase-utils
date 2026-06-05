@@ -30,7 +30,7 @@ minimumReleaseAgeExclude:
 | `@favish/staffbase-utils/text` | `truncateText`, `normalizeText`, `normalizeTextForSearch` |
 | `@favish/staffbase-utils/storage` | `createLocalStorageCache`, `canUseLocalStorage` |
 | `@favish/staffbase-utils/log` | `logError`, `logWarn`, `logDebug`, `setLoggingEnabled` |
-| `@favish/staffbase-utils/device` | `isMobile`, `isMobileOrWebview`, `isMobilePlatform`, `isMobileViewport`, `isNativeApp` |
+| `@favish/staffbase-utils/device` | `isMobile`, `isMobileOrWebview`, `isMobilePlatform`, `isMobileViewport`, `isNativeApp`, `isIOSTouchDevice`, `hasIosStaffbaseRuntime` |
 | `@favish/staffbase-utils/dom` | `getDynamicClasses` |
 | `@favish/staffbase-utils/host` | `getStaffbaseCsrfToken` |
 | `@favish/staffbase-utils/html` | `sanitizeHtml`, `sanitizeArticleHtml`, `cleanHTML`, `stripHtmlTags` |
@@ -39,7 +39,7 @@ minimumReleaseAgeExclude:
 | `@favish/staffbase-utils/widgets` | `renderWidgets`, `parseBooleanAttribute`, `parseEnumAttribute`, `parseStringAttribute`, `parseCommaSeparated`, `normalizeLegacyAttributes` |
 | `@favish/staffbase-utils/widgets/react` | `useRenderWidgets` (React peer) |
 | `@favish/staffbase-utils/react` | `createReactRoot`, `ErrorBoundary`, `ShadowStyle`, `useMediaQuery`, `useReducedMotion`, `useDebouncedValue`, `useClickOutside`, `useResetScrollPosition`, `useForceFullScreenOverlay`, `useOptimisticSet`, `usePaginatedList` (React peer) |
-| `@favish/staffbase-utils/shadow` | `injectShadowStyles`, `isShadowRoot` |
+| `@favish/staffbase-utils/shadow` | `injectShadowStyles`, `isShadowRoot`, `getDeepActiveElement`, `getFocusableElements`, `focusTrapRegistry`, `bodyScrollLock`, `generateUniqueId` |
 | `@favish/staffbase-utils/shadow/portal` | `PortalContainerProvider`, `usePortalContainer` (React peer only, no Emotion) |
 | `@favish/staffbase-utils/shadow/react` | `ensureShadowMount` (+ re-exports portal) (React + @emotion/cache peers) |
 | `@favish/staffbase-utils/types` | `Channel`, `ChannelLink`, `ChannelLinkParameter`, `DropdownOption`, `LocalizedContent`, `ArticleImage`, `ArticleImageVariant` (type-only) |

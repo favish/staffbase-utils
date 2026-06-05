@@ -1,2 +1,8 @@
+export type { RegisteredFocusTrap } from '../types/shadow/RegisteredFocusTrap'
+export { bodyScrollLock } from './bodyScrollLock'
+export { focusTrapRegistry } from './focusTrapRegistry'
+export { generateUniqueId } from './generateUniqueId'
+export { getDeepActiveElement } from './getDeepActiveElement'
+export { getFocusableElements } from './getFocusableElements'
 export { injectShadowStyles } from './injectShadowStyles'
 export { isShadowRoot } from './isShadowRoot'

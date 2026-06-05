@@ -1,3 +1,5 @@
+export { hasIosStaffbaseRuntime } from './hasIosStaffbaseRuntime'
+export { isIOSTouchDevice } from './isIOSTouchDevice'
 export { isMobile } from './isMobile'
 export { isMobileOrWebview } from './isMobileOrWebview'
 export { isMobilePlatform } from './isMobilePlatform'

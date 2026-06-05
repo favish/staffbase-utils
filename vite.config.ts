@@ -9,6 +9,7 @@ import dts from 'vite-plugin-dts'
 const entries = {
   api: resolve(__dirname, 'src/api/index.ts'),
   content: resolve(__dirname, 'src/content/index.ts'),
+  i18n: resolve(__dirname, 'src/i18n/index.ts'),
   log: resolve(__dirname, 'src/log/index.ts'),
   device: resolve(__dirname, 'src/device/index.ts'),
   dom: resolve(__dirname, 'src/dom/index.ts'),
@@ -16,6 +17,10 @@ const entries = {
   html: resolve(__dirname, 'src/html/index.ts'),
   links: resolve(__dirname, 'src/links/index.ts'),
   'links/react': resolve(__dirname, 'src/links/react/index.ts'),
+  news: resolve(__dirname, 'src/news/index.ts'),
+  react: resolve(__dirname, 'src/react/index.ts'),
+  storage: resolve(__dirname, 'src/storage/index.ts'),
+  text: resolve(__dirname, 'src/text/index.ts'),
   shadow: resolve(__dirname, 'src/shadow/index.ts'),
   'shadow/portal': resolve(__dirname, 'src/shadow/portal/index.ts'),
   'shadow/react': resolve(__dirname, 'src/shadow/react/index.ts'),

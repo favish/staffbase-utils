@@ -4,736 +4,742 @@
  */
 
 export interface paths {
-    "/groups": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /**
-         * List groups
-         * @description This endpoint returns all groups on the Staffbase platform sorted by name.
-         */
-        get: operations["GetGroups"];
-        put?: never;
-        /**
-         * Create a group
-         * @description This endpoint creates a new group on the Staffbase platform. Use this endpoint to define the <a href="https://support.staffbase.com/hc/en-us/articles/360010803979" target="_blank" rel="noopener noreferrer">group type</a>, which is determined by the configuration settings you provide.
-         */
-        post: operations["CreateGroup"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/groups/search": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /**
-         * Search groups
-         * @description This endpoint allows to search for groups on the Staffbase platform. You can provide a query or filter by name, type, creator, and permission.
-         */
-        get: operations["SearchGroups"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/groups/{groupId}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /**
-         * Get a group
-         * @description This endpoint retrieves the details of a specific group.
-         */
-        get: operations["GetGroup"];
-        put?: never;
-        post?: never;
-        /**
-         * Delete a group
-         * @description This endpoint deletes a group based on the group identifier. It can be executed by an administrator or group administrator.
-         */
-        delete: operations["DeleteGroup"];
-        options?: never;
-        head?: never;
-        /**
-         * Update a group
-         * @description This endpoint updates a group. Only the fields provided in the request body will be updated. This applies not to the nested fields like the localization. To reset a field, set its value to `null` or leave it empty.
-         */
-        patch: operations["PatchGroup"];
-        trace?: never;
-    };
-    "/groups/{groupId}/members/search": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /**
-         * Get members
-         * @description This endpoint returns members of a specific group sorted by their name.
-         */
-        get: operations["SearchMembersOfGroup"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/groups/{groupId}/members": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        /**
-         * Update members
-         * @description This endpoint adds or removes members from a group.
-         */
-        patch: operations["PatchMembersOfGroup"];
-        trace?: never;
-    };
-}
-export type webhooks = Record<string, never>;
-export interface components {
-    schemas: {
-        /** @description The object used to create a new group. The group type is determined by the configuration provided in the request. */
-        GroupCreate: {
-            config: components["schemas"]["GroupConfigCreate"];
-            /** @description Unique identifier from an external system, such as an HR integration. */
-            externalId?: string;
-            accessorIds?: components["schemas"]["GroupAccessorIds"];
-            adminIds?: components["schemas"]["AdminIds"];
-            /** @description A list of inclusion conditions that define which users are automatically added to the group. Each condition specifies tags or attributes that users must match to be included. This is only applicable for conditional groups. */
-            inclusions?: components["schemas"]["Conditions"][];
-            /** @description A list of user IDs that are included in the group, regardless of any exclusion or conditional rules. This is only applicable for conditional groups. */
-            inclusionUserIds?: string[];
-            /** @description A list of user IDs that are explicitly excluded from the group, even if they meet inclusion conditions. This is only applicable for conditional groups. */
-            exclusions?: components["schemas"]["Conditions"][];
-            /** @description A list of user IDs that are explicitly excluded from the group, even if they meet inclusion conditions. This is only applicable for conditional groups. */
-            exclusionUserIds?: string[];
-        };
-        GroupUpdate: {
-            accessorIds?: components["schemas"]["GroupAccessorIds"];
-            adminIds?: components["schemas"]["GroupAccessorIds"];
-            config?: components["schemas"]["GroupConfigUpdate"];
-            /** @description Unique identifier from an external system, such as an HR integration. */
-            externalId?: string;
-            /** @description A list of inclusion conditions that define which users are automatically added to the group. Each condition specifies tags or attributes that users must match to be included. */
-            inclusions?: components["schemas"]["Conditions"][];
-            /** @description A list of user IDs that are included in the group, regardless of any exclusion or conditional rules. */
-            inclusionUserIds?: string[];
-            /** @description A list of user IDs that are explicitly excluded from the group, even if they meet inclusion conditions. */
-            exclusions?: components["schemas"]["Conditions"][];
-            /** @description A list of user IDs that are explicitly excluded from the group, even if they meet inclusion conditions. */
-            exclusionUserIds?: string[];
-        };
-        /** @description Defines conditions for including or excluding users from a group based on tags. */
-        Conditions: {
-            /** @description List of tags that users must match to be included or excluded. */
-            tags?: string[];
-        };
-        GroupsSearch: {
-            /** @description The total number of groups matching the search. */
-            total?: number;
-            /** @description Cursor to get the next data page. */
-            nextCursor?: string;
-            /** @description Cursor to get the previous data page. */
-            prevCursor?: string;
-            /** @description List of searched groups. */
-            entries?: {
-                /** @description List of groups. */
-                data?: components["schemas"]["Group"][];
-            };
-        };
-        /** @description Returns a list of manageable groups. */
-        Groups: {
-            /** @description Cursor to get the next data page. */
-            nextCursor?: string;
-            /** @description Cursor to get the previous data page. */
-            prevCursor?: string;
-            /** @description List of groups. */
-            entries?: components["schemas"]["Group"][];
-        };
-        Group: {
-            /** @description Unique identifier of a group. */
-            id: string;
-            accessorIds?: components["schemas"]["GroupAccessorIds"];
-            adminIds?: components["schemas"]["GroupAccessorIds"];
-            /** @description External systems identifier of the group. */
-            externalId?: string;
-            config: components["schemas"]["GroupConfig"];
-            /**
-             * @description Type of the group. Learn more about <a href="https://support.staffbase.com/hc/en-us/articles/360010803979-Types-of-User-Groups" target="_blank" rel="noopener noreferrer"> types of user groups</a>.
-             * @enum {string}
-             */
-            type: "conditional" | "internal" | "open";
-            creator: components["schemas"]["GroupCreator"];
-            /**
-             * Format: date-time
-             * @description Timestamp of the last update.
-             */
-            updatedAt: string;
-            /** @description List of inclusion conditions. */
-            inclusions?: components["schemas"]["Conditions"][];
-            /** @description List of included userIds. */
-            inclusionUserIds?: string[];
-            /** @description List of exclusion conditions. */
-            exclusions?: components["schemas"]["Conditions"][];
-            /** @description List of excluded userIds. */
-            exclusionUserIds?: string[];
-        };
-        GroupConfigCreate: {
-            localization: components["schemas"]["Localization"];
-            /** @description Show the group in the My Groups overview page. Set this to `true` for open groups. For other group types, this setting is ignored. */
-            showInOverview?: boolean;
-            /** @description URL to the group image. */
-            imageUrl?: string;
-            /** @description Icon of the group. */
-            icon?: string;
-            /** @description URL of a custom icon for the group. */
-            customIconUrl?: string;
-            /** @description URL to the group page. */
-            link?: string;
-        };
-        GroupConfigUpdate: {
-            localization?: components["schemas"]["Localization"];
-            /** @description Show the group in the My Groups overview page. */
-            showInOverview?: boolean;
-            /** @description URL to the group image. */
-            imageUrl?: string;
-            /** @description Icon of the group. */
-            icon?: string;
-            /** @description URL of a custom icon for the group. */
-            customIconUrl?: string;
-            /** @description URL to the group page. */
-            link?: string;
-        };
-        GroupConfig: {
-            localization: components["schemas"]["Localization"];
-            /** @description Show the group in the My Groups overview page. */
-            showInOverview: boolean;
-            /** @description URL to the group image. */
-            imageUrl?: string;
-            /** @description Icon of the group. */
-            icon?: string;
-            /** @description URL of a custom icon for the group. */
-            customIconUrl?: string;
-            /** @description URL to the group page. */
-            link?: string;
-        };
-        GroupCreator: {
-            /** @description Unique identifier of the creator. */
-            id?: string;
-            /**
-             * @description Type of the creator.
-             * @enum {string}
-             */
-            type: "integration" | "scim" | "token" | "user";
-        };
-        /** @description The object that holds different types of accessor ids for a group, including user, group, and platform access. Its presence indicates that the group is open. If it is omitted, the group is internal. It is required only for open groups. */
-        GroupAccessorIds: {
-            /** @description List of user ids that has access to this group. */
-            userIds?: string[];
-            /** @description List of group ids that has access to this group. */
-            groupIds?: string[];
-            /** @description Shows whether all users on the platform have access to this group. */
-            branchAccess?: boolean;
-        };
-        /** @description Defines the users or groups that are members of this group. */
-        GroupMemberIds: {
-            /** @description List of user identifiers for members who have access to the group. Each identifier can be either the system-generated unique user ID or an <a href="https://support.staffbase.com/hc/en-us/articles/360020766759" target="_blank" rel="noopener noreferrer">external identifier</a>. */
-            userIds?: string[];
-        };
-        /** @description Defines the users or groups that have administrative rights to manage this group. Administrators can modify group settings and membership. */
-        AdminIds: {
-            /** @description List of user ids that are administrators of this group. */
-            userIds?: string[];
-            /** @description List of group ids that are administrators of this group. */
-            groupIds?: string[];
-        };
-        /** @description The object that holds different localization values for a group. Refer to the <a href="https://developers.staffbase.com/references/languages-and-locale-codes" target="_blank" rel="noopener noreferrer">localization documentation</a> for the list of supported locales. */
-        Localization: {
-            [key: string]: {
-                /** @description Name of the group. */
-                name: string;
-                /** @description Description of the group. */
-                description?: string;
-            };
-        };
-        UserConfig: {
-            /**
-             * @description Content language locale for the specific user. The locale has to be one of the <a href="/references/languages-and-locale-codes/" target="_blank">supported language locales</a>. The user can <a href="https://support.staffbase.com/hc/en-us/articles/206524359-Changing-the-Language" target="_blank">update their content language</a> any time in the App or Intranet settings.
-             * @example en_US
-             */
-            locale: string;
-        };
-        Email: {
-            /** @description primary mail of the user */
-            value?: string;
-            /**
-             * @description source of the email address
-             * @enum {string}
-             */
-            source: "admin" | "user" | "system";
-        };
-        /**
-         * @description The status of the user on the platform. The status `contact` is only applicable if you have Staffbase Email.
-         * @enum {string}
-         */
-        UserStatus: "pending" | "activated" | "deactivated" | "deleted" | "contact";
-        UserAvatar: {
-            original?: {
-                /** @example https://{{sb-host}}.com/{{sb-system}}/image/upload/v1631172776/{{shortened}}/603b64e00c3fdb29134eb89b.png */
-                url?: string;
-                /** @example 225 */
-                width?: number;
-                /** @example 225 */
-                height?: number;
-                /** @example 4650 */
-                size?: number;
-                /** @example png */
-                format?: string;
-                /** @example image/png */
-                mimeType?: string;
-                /** @example 2021-09-09T07:32:56.000Z */
-                created?: string;
-            };
-            icon?: {
-                /** @example https://{{sb-host}}.com/{{sb-system}}/image/upload/v1631172776/{{shortened}}/603b64e00c3fdb29134eb89b.png */
-                url?: string;
-                /** @example null */
-                format?: string;
-                /** @example null */
-                mimeType?: string;
-            };
-            thumb?: {
-                /** @example https://{{sb-host}}.com/{{sb-system}}/image/upload/v1631172776/{{shortened}}/603b64e00c3fdb29134eb89b.png */
-                url?: string;
-                /** @example null */
-                format?: string;
-                /** @example null */
-                mimeType?: string;
-            };
-        };
-        /** @description <a href="https://support.staffbase.com/hc/en-us/articles/25487559570834" target="_blank">System and custom profile fields</a> for a user. System fields are listed as named properties, and custom profile fields are supported as additional properties. */
-        UserDataProfile: {
-            /** @description The first name of the user. */
-            firstName?: string;
-            /** @description The last name of the user. */
-            lastName?: string;
-            /** @description The department of the user. */
-            department?: string;
-            /** @description The location of the user. */
-            location?: string;
-            /** @description The position or job title of the user. */
-            position?: string;
-            /** @description The phone number of the user. */
-            phoneNumber?: string;
-            /** @description The public email address of the user. Only shown in the user profile, not used for login or notifications. */
-            publicEmailAddress?: string;
-            avatar?: components["schemas"]["UserAvatar"];
-        } & {
-            [key: string]: unknown;
-        };
-        UserName: {
-            /** @description unique username of the user */
-            value?: string;
-            /**
-             * @description source of the username
-             * @enum {string}
-             */
-            source: "admin" | "user" | "system";
-        };
-        User: {
-            /** @description unique identifier of a user */
-            id: string;
-            config?: components["schemas"]["UserConfig"];
-            /**
-             * Format: date-time
-             * @description timestamp when the user was created
-             */
-            createdAt: string;
-            /**
-             * Format: date-time
-             * @description timestamp when the user was activated
-             */
-            activatedAt?: string;
-            /** @description external identifier for a user */
-            externalId?: string;
-            /** @description role for permission checks */
-            role?: string;
-            email?: components["schemas"]["Email"];
-            status: components["schemas"]["UserStatus"];
-            /** @description access code assigned to the user before activation */
-            secret?: string;
-            profile?: components["schemas"]["UserDataProfile"];
-            userName?: components["schemas"]["UserName"];
-        };
-        UsersSearch: {
-            /** @description total number of members */
-            total?: number;
-            /** @description cursor to get the next data */
-            nextCursor?: string;
-            /** @description cursor to get the previous data */
-            prevCursor?: string;
-            /** @description list of members */
-            entries?: {
-                /** @description list of users */
-                data?: components["schemas"]["User"][];
-            };
-        };
-    };
-    responses: {
-        /** @description This occurs when the requested resource cannot be found. */
-        NotFound: {
-            headers: {
-                [name: string]: unknown;
-            };
-            content: {
-                /**
-                 * @example {
-                 *       "identifier": 40408,
-                 *       "statusCode": 404,
-                 *       "message": "Group could not be found.",
-                 *       "type": "NotFoundException"
-                 *     }
-                 */
-                "application/json": unknown;
-            };
-        };
-        /** @description This occurs when a valid authentication token is missing. */
-        NoToken: {
-            headers: {
-                [name: string]: unknown;
-            };
-            content: {
-                /**
-                 * @example {
-                 *       "identifier": 40102,
-                 *       "statusCode": 401,
-                 *       "message": "This endpoint requires authentication.",
-                 *       "type": "NotLoggedInException"
-                 *     }
-                 */
-                "application/json": unknown;
-            };
-        };
-        /** @description This occurs when the provided token does not have permission to perform the action. */
-        NoPermission: {
-            headers: {
-                [name: string]: unknown;
-            };
-            content: {
-                /**
-                 * @example {
-                 *       "identifier": 40308,
-                 *       "statusCode": 403,
-                 *       "message": "Access to entity is restricted. You are trying to perform an operation that exceeds the access level.",
-                 *       "type": "AccessDeniedException"
-                 *     }
-                 */
-                "application/json": unknown;
-            };
-        };
-    };
+  '/groups': {
     parameters: {
-        /** @description The maximum number of results to return per page. */
-        Limit: number;
-        /** @description The unique identifier automatically generated by the Staffbase platform or the external identifier (`externalId`), if it is added for the group. */
-        GroupId: string;
-        /** @description Cursor for pagination. Use it to fetch the next or previous page of results. When a cursor is provided, only the `limit` parameter is applied. Changing other parameters affects pagination consistency. */
-        Cursor: string;
-        /** @description Search for a specific group and their name. */
-        Query: string;
-        /** @description Filter group members by their user status. The query parameter supports multiple values. For example, `?status=activated&status=pending` returns all members who are either registered on the platform or pending activation. */
-        UserStatus: "pending" | "activated" | "deactivated" | "contact";
-        /** @description Filter by group type. Learn more about <a href="https://support.staffbase.com/hc/en-us/articles/360010803979-Types-of-User-Groups" target="_blank" rel="noopener noreferrer"> types of user groups</a>. */
-        Type: "conditional" | "internal" | "open";
-        /** @description Filter groups by creator ID. Only groups owned by the specified ID are returned. */
-        CreatorIds: string[];
-        /** @description Filter groups by permission level. Use `manage` for groups you can edit or `access` for all groups you can view. */
-        Permission: "manage" | "access";
-        /** @description Sort groups by a specific field. */
-        Sort: "created_ASC" | "created_DESC" | "updated_DESC" | "name_ASC" | "name_DESC" | "relevance_DESC";
-    };
-    requestBodies: never;
-    headers: never;
-    pathItems: never;
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    /**
+     * List groups
+     * @description This endpoint returns all groups on the Staffbase platform sorted by name.
+     */
+    get: operations['GetGroups']
+    put?: never
+    /**
+     * Create a group
+     * @description This endpoint creates a new group on the Staffbase platform. Use this endpoint to define the <a href="https://support.staffbase.com/hc/en-us/articles/360010803979" target="_blank" rel="noopener noreferrer">group type</a>, which is determined by the configuration settings you provide.
+     */
+    post: operations['CreateGroup']
+    delete?: never
+    options?: never
+    head?: never
+    patch?: never
+    trace?: never
+  }
+  '/groups/search': {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    /**
+     * Search groups
+     * @description This endpoint allows to search for groups on the Staffbase platform. You can provide a query or filter by name, type, creator, and permission.
+     */
+    get: operations['SearchGroups']
+    put?: never
+    post?: never
+    delete?: never
+    options?: never
+    head?: never
+    patch?: never
+    trace?: never
+  }
+  '/groups/{groupId}': {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    /**
+     * Get a group
+     * @description This endpoint retrieves the details of a specific group.
+     */
+    get: operations['GetGroup']
+    put?: never
+    post?: never
+    /**
+     * Delete a group
+     * @description This endpoint deletes a group based on the group identifier. It can be executed by an administrator or group administrator.
+     */
+    delete: operations['DeleteGroup']
+    options?: never
+    head?: never
+    /**
+     * Update a group
+     * @description This endpoint updates a group. Only the fields provided in the request body will be updated. This applies not to the nested fields like the localization. To reset a field, set its value to `null` or leave it empty.
+     */
+    patch: operations['PatchGroup']
+    trace?: never
+  }
+  '/groups/{groupId}/members/search': {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    /**
+     * Get members
+     * @description This endpoint returns members of a specific group sorted by their name.
+     */
+    get: operations['SearchMembersOfGroup']
+    put?: never
+    post?: never
+    delete?: never
+    options?: never
+    head?: never
+    patch?: never
+    trace?: never
+  }
+  '/groups/{groupId}/members': {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    get?: never
+    put?: never
+    post?: never
+    delete?: never
+    options?: never
+    head?: never
+    /**
+     * Update members
+     * @description This endpoint adds or removes members from a group.
+     */
+    patch: operations['PatchMembersOfGroup']
+    trace?: never
+  }
 }
-export type $defs = Record<string, never>;
+export type webhooks = Record<string, never>
+export interface components {
+  schemas: {
+    /** @description The object used to create a new group. The group type is determined by the configuration provided in the request. */
+    GroupCreate: {
+      config: components['schemas']['GroupConfigCreate']
+      /** @description Unique identifier from an external system, such as an HR integration. */
+      externalId?: string
+      accessorIds?: components['schemas']['GroupAccessorIds']
+      adminIds?: components['schemas']['AdminIds']
+      /** @description A list of inclusion conditions that define which users are automatically added to the group. Each condition specifies tags or attributes that users must match to be included. This is only applicable for conditional groups. */
+      inclusions?: components['schemas']['Conditions'][]
+      /** @description A list of user IDs that are included in the group, regardless of any exclusion or conditional rules. This is only applicable for conditional groups. */
+      inclusionUserIds?: string[]
+      /** @description A list of user IDs that are explicitly excluded from the group, even if they meet inclusion conditions. This is only applicable for conditional groups. */
+      exclusions?: components['schemas']['Conditions'][]
+      /** @description A list of user IDs that are explicitly excluded from the group, even if they meet inclusion conditions. This is only applicable for conditional groups. */
+      exclusionUserIds?: string[]
+    }
+    GroupUpdate: {
+      accessorIds?: components['schemas']['GroupAccessorIds']
+      adminIds?: components['schemas']['GroupAccessorIds']
+      config?: components['schemas']['GroupConfigUpdate']
+      /** @description Unique identifier from an external system, such as an HR integration. */
+      externalId?: string
+      /** @description A list of inclusion conditions that define which users are automatically added to the group. Each condition specifies tags or attributes that users must match to be included. */
+      inclusions?: components['schemas']['Conditions'][]
+      /** @description A list of user IDs that are included in the group, regardless of any exclusion or conditional rules. */
+      inclusionUserIds?: string[]
+      /** @description A list of user IDs that are explicitly excluded from the group, even if they meet inclusion conditions. */
+      exclusions?: components['schemas']['Conditions'][]
+      /** @description A list of user IDs that are explicitly excluded from the group, even if they meet inclusion conditions. */
+      exclusionUserIds?: string[]
+    }
+    /** @description Defines conditions for including or excluding users from a group based on tags. */
+    Conditions: {
+      /** @description List of tags that users must match to be included or excluded. */
+      tags?: string[]
+    }
+    GroupsSearch: {
+      /** @description The total number of groups matching the search. */
+      total?: number
+      /** @description Cursor to get the next data page. */
+      nextCursor?: string
+      /** @description Cursor to get the previous data page. */
+      prevCursor?: string
+      /** @description List of searched groups. */
+      entries?: {
+        /** @description List of groups. */
+        data?: components['schemas']['Group'][]
+      }
+    }
+    /** @description Returns a list of manageable groups. */
+    Groups: {
+      /** @description Cursor to get the next data page. */
+      nextCursor?: string
+      /** @description Cursor to get the previous data page. */
+      prevCursor?: string
+      /** @description List of groups. */
+      entries?: components['schemas']['Group'][]
+    }
+    Group: {
+      /** @description Unique identifier of a group. */
+      id: string
+      accessorIds?: components['schemas']['GroupAccessorIds']
+      adminIds?: components['schemas']['GroupAccessorIds']
+      /** @description External systems identifier of the group. */
+      externalId?: string
+      config: components['schemas']['GroupConfig']
+      /**
+       * @description Type of the group. Learn more about <a href="https://support.staffbase.com/hc/en-us/articles/360010803979-Types-of-User-Groups" target="_blank" rel="noopener noreferrer"> types of user groups</a>.
+       * @enum {string}
+       */
+      type: 'conditional' | 'internal' | 'open'
+      creator: components['schemas']['GroupCreator']
+      /**
+       * Format: date-time
+       * @description Timestamp of the last update.
+       */
+      updatedAt: string
+      /** @description List of inclusion conditions. */
+      inclusions?: components['schemas']['Conditions'][]
+      /** @description List of included userIds. */
+      inclusionUserIds?: string[]
+      /** @description List of exclusion conditions. */
+      exclusions?: components['schemas']['Conditions'][]
+      /** @description List of excluded userIds. */
+      exclusionUserIds?: string[]
+    }
+    GroupConfigCreate: {
+      localization: components['schemas']['Localization']
+      /** @description Show the group in the My Groups overview page. Set this to `true` for open groups. For other group types, this setting is ignored. */
+      showInOverview?: boolean
+      /** @description URL to the group image. */
+      imageUrl?: string
+      /** @description Icon of the group. */
+      icon?: string
+      /** @description URL of a custom icon for the group. */
+      customIconUrl?: string
+      /** @description URL to the group page. */
+      link?: string
+    }
+    GroupConfigUpdate: {
+      localization?: components['schemas']['Localization']
+      /** @description Show the group in the My Groups overview page. */
+      showInOverview?: boolean
+      /** @description URL to the group image. */
+      imageUrl?: string
+      /** @description Icon of the group. */
+      icon?: string
+      /** @description URL of a custom icon for the group. */
+      customIconUrl?: string
+      /** @description URL to the group page. */
+      link?: string
+    }
+    GroupConfig: {
+      localization: components['schemas']['Localization']
+      /** @description Show the group in the My Groups overview page. */
+      showInOverview: boolean
+      /** @description URL to the group image. */
+      imageUrl?: string
+      /** @description Icon of the group. */
+      icon?: string
+      /** @description URL of a custom icon for the group. */
+      customIconUrl?: string
+      /** @description URL to the group page. */
+      link?: string
+    }
+    GroupCreator: {
+      /** @description Unique identifier of the creator. */
+      id?: string
+      /**
+       * @description Type of the creator.
+       * @enum {string}
+       */
+      type: 'integration' | 'scim' | 'token' | 'user'
+    }
+    /** @description The object that holds different types of accessor ids for a group, including user, group, and platform access. Its presence indicates that the group is open. If it is omitted, the group is internal. It is required only for open groups. */
+    GroupAccessorIds: {
+      /** @description List of user ids that has access to this group. */
+      userIds?: string[]
+      /** @description List of group ids that has access to this group. */
+      groupIds?: string[]
+      /** @description Shows whether all users on the platform have access to this group. */
+      branchAccess?: boolean
+    }
+    /** @description Defines the users or groups that are members of this group. */
+    GroupMemberIds: {
+      /** @description List of user identifiers for members who have access to the group. Each identifier can be either the system-generated unique user ID or an <a href="https://support.staffbase.com/hc/en-us/articles/360020766759" target="_blank" rel="noopener noreferrer">external identifier</a>. */
+      userIds?: string[]
+    }
+    /** @description Defines the users or groups that have administrative rights to manage this group. Administrators can modify group settings and membership. */
+    AdminIds: {
+      /** @description List of user ids that are administrators of this group. */
+      userIds?: string[]
+      /** @description List of group ids that are administrators of this group. */
+      groupIds?: string[]
+    }
+    /** @description The object that holds different localization values for a group. Refer to the <a href="https://developers.staffbase.com/references/languages-and-locale-codes" target="_blank" rel="noopener noreferrer">localization documentation</a> for the list of supported locales. */
+    Localization: {
+      [key: string]: {
+        /** @description Name of the group. */
+        name: string
+        /** @description Description of the group. */
+        description?: string
+      }
+    }
+    UserConfig: {
+      /**
+       * @description Content language locale for the specific user. The locale has to be one of the <a href="/references/languages-and-locale-codes/" target="_blank">supported language locales</a>. The user can <a href="https://support.staffbase.com/hc/en-us/articles/206524359-Changing-the-Language" target="_blank">update their content language</a> any time in the App or Intranet settings.
+       * @example en_US
+       */
+      locale: string
+    }
+    Email: {
+      /** @description primary mail of the user */
+      value?: string
+      /**
+       * @description source of the email address
+       * @enum {string}
+       */
+      source: 'admin' | 'user' | 'system'
+    }
+    /**
+     * @description The status of the user on the platform. The status `contact` is only applicable if you have Staffbase Email.
+     * @enum {string}
+     */
+    UserStatus: 'pending' | 'activated' | 'deactivated' | 'deleted' | 'contact'
+    UserAvatar: {
+      original?: {
+        /** @example https://{{sb-host}}.com/{{sb-system}}/image/upload/v1631172776/{{shortened}}/603b64e00c3fdb29134eb89b.png */
+        url?: string
+        /** @example 225 */
+        width?: number
+        /** @example 225 */
+        height?: number
+        /** @example 4650 */
+        size?: number
+        /** @example png */
+        format?: string
+        /** @example image/png */
+        mimeType?: string
+        /** @example 2021-09-09T07:32:56.000Z */
+        created?: string
+      }
+      icon?: {
+        /** @example https://{{sb-host}}.com/{{sb-system}}/image/upload/v1631172776/{{shortened}}/603b64e00c3fdb29134eb89b.png */
+        url?: string
+        /** @example null */
+        format?: string
+        /** @example null */
+        mimeType?: string
+      }
+      thumb?: {
+        /** @example https://{{sb-host}}.com/{{sb-system}}/image/upload/v1631172776/{{shortened}}/603b64e00c3fdb29134eb89b.png */
+        url?: string
+        /** @example null */
+        format?: string
+        /** @example null */
+        mimeType?: string
+      }
+    }
+    /** @description <a href="https://support.staffbase.com/hc/en-us/articles/25487559570834" target="_blank">System and custom profile fields</a> for a user. System fields are listed as named properties, and custom profile fields are supported as additional properties. */
+    UserDataProfile: {
+      /** @description The first name of the user. */
+      firstName?: string
+      /** @description The last name of the user. */
+      lastName?: string
+      /** @description The department of the user. */
+      department?: string
+      /** @description The location of the user. */
+      location?: string
+      /** @description The position or job title of the user. */
+      position?: string
+      /** @description The phone number of the user. */
+      phoneNumber?: string
+      /** @description The public email address of the user. Only shown in the user profile, not used for login or notifications. */
+      publicEmailAddress?: string
+      avatar?: components['schemas']['UserAvatar']
+    } & {
+      [key: string]: unknown
+    }
+    UserName: {
+      /** @description unique username of the user */
+      value?: string
+      /**
+       * @description source of the username
+       * @enum {string}
+       */
+      source: 'admin' | 'user' | 'system'
+    }
+    User: {
+      /** @description unique identifier of a user */
+      id: string
+      config?: components['schemas']['UserConfig']
+      /**
+       * Format: date-time
+       * @description timestamp when the user was created
+       */
+      createdAt: string
+      /**
+       * Format: date-time
+       * @description timestamp when the user was activated
+       */
+      activatedAt?: string
+      /** @description external identifier for a user */
+      externalId?: string
+      /** @description role for permission checks */
+      role?: string
+      email?: components['schemas']['Email']
+      status: components['schemas']['UserStatus']
+      /** @description access code assigned to the user before activation */
+      secret?: string
+      profile?: components['schemas']['UserDataProfile']
+      userName?: components['schemas']['UserName']
+    }
+    UsersSearch: {
+      /** @description total number of members */
+      total?: number
+      /** @description cursor to get the next data */
+      nextCursor?: string
+      /** @description cursor to get the previous data */
+      prevCursor?: string
+      /** @description list of members */
+      entries?: {
+        /** @description list of users */
+        data?: components['schemas']['User'][]
+      }
+    }
+  }
+  responses: {
+    /** @description This occurs when the requested resource cannot be found. */
+    NotFound: {
+      headers: {
+        [name: string]: unknown
+      }
+      content: {
+        /**
+         * @example {
+         *       "identifier": 40408,
+         *       "statusCode": 404,
+         *       "message": "Group could not be found.",
+         *       "type": "NotFoundException"
+         *     }
+         */
+        'application/json': unknown
+      }
+    }
+    /** @description This occurs when a valid authentication token is missing. */
+    NoToken: {
+      headers: {
+        [name: string]: unknown
+      }
+      content: {
+        /**
+         * @example {
+         *       "identifier": 40102,
+         *       "statusCode": 401,
+         *       "message": "This endpoint requires authentication.",
+         *       "type": "NotLoggedInException"
+         *     }
+         */
+        'application/json': unknown
+      }
+    }
+    /** @description This occurs when the provided token does not have permission to perform the action. */
+    NoPermission: {
+      headers: {
+        [name: string]: unknown
+      }
+      content: {
+        /**
+         * @example {
+         *       "identifier": 40308,
+         *       "statusCode": 403,
+         *       "message": "Access to entity is restricted. You are trying to perform an operation that exceeds the access level.",
+         *       "type": "AccessDeniedException"
+         *     }
+         */
+        'application/json': unknown
+      }
+    }
+  }
+  parameters: {
+    /** @description The maximum number of results to return per page. */
+    Limit: number
+    /** @description The unique identifier automatically generated by the Staffbase platform or the external identifier (`externalId`), if it is added for the group. */
+    GroupId: string
+    /** @description Cursor for pagination. Use it to fetch the next or previous page of results. When a cursor is provided, only the `limit` parameter is applied. Changing other parameters affects pagination consistency. */
+    Cursor: string
+    /** @description Search for a specific group and their name. */
+    Query: string
+    /** @description Filter group members by their user status. The query parameter supports multiple values. For example, `?status=activated&status=pending` returns all members who are either registered on the platform or pending activation. */
+    UserStatus: 'pending' | 'activated' | 'deactivated' | 'contact'
+    /** @description Filter by group type. Learn more about <a href="https://support.staffbase.com/hc/en-us/articles/360010803979-Types-of-User-Groups" target="_blank" rel="noopener noreferrer"> types of user groups</a>. */
+    Type: 'conditional' | 'internal' | 'open'
+    /** @description Filter groups by creator ID. Only groups owned by the specified ID are returned. */
+    CreatorIds: string[]
+    /** @description Filter groups by permission level. Use `manage` for groups you can edit or `access` for all groups you can view. */
+    Permission: 'manage' | 'access'
+    /** @description Sort groups by a specific field. */
+    Sort:
+      | 'created_ASC'
+      | 'created_DESC'
+      | 'updated_DESC'
+      | 'name_ASC'
+      | 'name_DESC'
+      | 'relevance_DESC'
+  }
+  requestBodies: never
+  headers: never
+  pathItems: never
+}
+export type $defs = Record<string, never>
 export interface operations {
-    GetGroups: {
-        parameters: {
-            query?: {
-                /** @description Cursor for pagination. Use it to fetch the next or previous page of results. When a cursor is provided, only the `limit` parameter is applied. Changing other parameters affects pagination consistency. */
-                cursor?: components["parameters"]["Cursor"];
-                /** @description The maximum number of results to return per page. */
-                limit?: components["parameters"]["Limit"];
-            };
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Get a list of groups on the Staffbase platform. */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/vnd.staffbase.accessors.groups.v2+json": components["schemas"]["Groups"];
-                };
-            };
-            401: components["responses"]["NoToken"];
-            403: components["responses"]["NoPermission"];
-        };
-    };
-    CreateGroup: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: {
-            content: {
-                "application/vnd.staffbase.accessors.group-create.v2+json": components["schemas"]["GroupCreate"];
-            };
-        };
-        responses: {
-            /** @description Group successfully created. */
-            201: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/vnd.staffbase.accessors.group.v3+json": components["schemas"]["Group"];
-                };
-            };
-            401: components["responses"]["NoToken"];
-            403: components["responses"]["NoPermission"];
-        };
-    };
-    SearchGroups: {
-        parameters: {
-            query?: {
-                /** @description Cursor for pagination. Use it to fetch the next or previous page of results. When a cursor is provided, only the `limit` parameter is applied. Changing other parameters affects pagination consistency. */
-                cursor?: components["parameters"]["Cursor"];
-                /** @description Sort groups by a specific field. */
-                sort?: components["parameters"]["Sort"];
-                /** @description The maximum number of results to return per page. */
-                limit?: components["parameters"]["Limit"];
-                /** @description Search for a specific group and their name. */
-                query?: components["parameters"]["Query"];
-                /** @description Filter by group type. Learn more about <a href="https://support.staffbase.com/hc/en-us/articles/360010803979-Types-of-User-Groups" target="_blank" rel="noopener noreferrer"> types of user groups</a>. */
-                type?: components["parameters"]["Type"];
-                /** @description Filter groups by permission level. Use `manage` for groups you can edit or `access` for all groups you can view. */
-                permission?: components["parameters"]["Permission"];
-                /** @description Filter groups by creator ID. Only groups owned by the specified ID are returned. */
-                creatorIds?: components["parameters"]["CreatorIds"];
-            };
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Returns a list of groups that match the specified search filters. */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/vnd.staffbase.accessors.groups-search.v1+json": components["schemas"]["GroupsSearch"];
-                };
-            };
-            401: components["responses"]["NoToken"];
-            403: components["responses"]["NoPermission"];
-        };
-    };
-    GetGroup: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                /** @description The unique identifier automatically generated by the Staffbase platform or the external identifier (`externalId`), if it is added for the group. */
-                groupId: components["parameters"]["GroupId"];
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Group returned. */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/vnd.staffbase.accessors.group.v3+json": components["schemas"]["Group"];
-                };
-            };
-            401: components["responses"]["NoToken"];
-            404: components["responses"]["NotFound"];
-        };
-    };
-    DeleteGroup: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                /** @description The unique identifier automatically generated by the Staffbase platform or the external identifier (`externalId`), if it is added for the group. */
-                groupId: components["parameters"]["GroupId"];
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Group deleted. */
-            204: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/vnd.staffbase.accessors.group-delete.v2+json": unknown;
-                };
-            };
-            401: components["responses"]["NoToken"];
-            404: components["responses"]["NotFound"];
-        };
-    };
-    PatchGroup: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                /** @description The unique identifier automatically generated by the Staffbase platform or the external identifier (`externalId`), if it is added for the group. */
-                groupId: components["parameters"]["GroupId"];
-            };
-            cookie?: never;
-        };
-        requestBody?: {
-            content: {
-                "application/vnd.staffbase.accessors.group-update.v1+json": components["schemas"]["GroupUpdate"];
-            };
-        };
-        responses: {
-            /** @description Group updated. */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/vnd.staffbase.accessors.group.v3+json": components["schemas"]["Group"];
-                };
-            };
-            401: components["responses"]["NoToken"];
-            404: components["responses"]["NotFound"];
-        };
-    };
-    SearchMembersOfGroup: {
-        parameters: {
-            query?: {
-                /** @description The maximum number of results to return per page. */
-                limit?: components["parameters"]["Limit"];
-                /** @description Cursor for pagination. Use it to fetch the next or previous page of results. When a cursor is provided, only the `limit` parameter is applied. Changing other parameters affects pagination consistency. */
-                cursor?: components["parameters"]["Cursor"];
-                /** @description Search for a specific group and their name. */
-                query?: components["parameters"]["Query"];
-                /** @description Filter group members by their user status. The query parameter supports multiple values. For example, `?status=activated&status=pending` returns all members who are either registered on the platform or pending activation. */
-                status?: components["parameters"]["UserStatus"];
-            };
-            header?: never;
-            path: {
-                /** @description The unique identifier automatically generated by the Staffbase platform or the external identifier (`externalId`), if it is added for the group. */
-                groupId: components["parameters"]["GroupId"];
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Group members returned. */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/vnd.staffbase.accessors.group.members-search.v1+json": components["schemas"]["UsersSearch"];
-                };
-            };
-            401: components["responses"]["NoToken"];
-            404: components["responses"]["NotFound"];
-        };
-    };
-    PatchMembersOfGroup: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                /** @description The unique identifier automatically generated by the Staffbase platform or the external identifier (`externalId`), if it is added for the group. */
-                groupId: components["parameters"]["GroupId"];
-            };
-            cookie?: never;
-        };
-        requestBody?: {
-            content: {
-                /**
-                 * @example {
-                 *       "userIds": [
-                 *         "62dfa87d725db035a9a2278a",
-                 *         "jane@examplecompany.com"
-                 *       ]
-                 *     }
-                 */
-                "application/vnd.staffbase.accessors.group.members-add.v1+json": components["schemas"]["GroupMemberIds"];
-                /**
-                 * @example {
-                 *       "userIds": [
-                 *         "62dfa87d725db035a9a2278a",
-                 *         "jane@examplecompany.com"
-                 *       ]
-                 *     }
-                 */
-                "application/vnd.staffbase.accessors.group.members-remove.v1+json": components["schemas"]["GroupMemberIds"];
-            };
-        };
-        responses: {
-            /** @description Group members updated. */
-            204: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/vnd.staffbase.accessors.group.members-add.v1+json": unknown;
-                    "application/vnd.staffbase.accessors.group.members-remove.v1+json": unknown;
-                };
-            };
-            401: components["responses"]["NoToken"];
-            404: components["responses"]["NotFound"];
-        };
-    };
+  GetGroups: {
+    parameters: {
+      query?: {
+        /** @description Cursor for pagination. Use it to fetch the next or previous page of results. When a cursor is provided, only the `limit` parameter is applied. Changing other parameters affects pagination consistency. */
+        cursor?: components['parameters']['Cursor']
+        /** @description The maximum number of results to return per page. */
+        limit?: components['parameters']['Limit']
+      }
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    requestBody?: never
+    responses: {
+      /** @description Get a list of groups on the Staffbase platform. */
+      200: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          'application/vnd.staffbase.accessors.groups.v2+json': components['schemas']['Groups']
+        }
+      }
+      401: components['responses']['NoToken']
+      403: components['responses']['NoPermission']
+    }
+  }
+  CreateGroup: {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    requestBody?: {
+      content: {
+        'application/vnd.staffbase.accessors.group-create.v2+json': components['schemas']['GroupCreate']
+      }
+    }
+    responses: {
+      /** @description Group successfully created. */
+      201: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          'application/vnd.staffbase.accessors.group.v3+json': components['schemas']['Group']
+        }
+      }
+      401: components['responses']['NoToken']
+      403: components['responses']['NoPermission']
+    }
+  }
+  SearchGroups: {
+    parameters: {
+      query?: {
+        /** @description Cursor for pagination. Use it to fetch the next or previous page of results. When a cursor is provided, only the `limit` parameter is applied. Changing other parameters affects pagination consistency. */
+        cursor?: components['parameters']['Cursor']
+        /** @description Sort groups by a specific field. */
+        sort?: components['parameters']['Sort']
+        /** @description The maximum number of results to return per page. */
+        limit?: components['parameters']['Limit']
+        /** @description Search for a specific group and their name. */
+        query?: components['parameters']['Query']
+        /** @description Filter by group type. Learn more about <a href="https://support.staffbase.com/hc/en-us/articles/360010803979-Types-of-User-Groups" target="_blank" rel="noopener noreferrer"> types of user groups</a>. */
+        type?: components['parameters']['Type']
+        /** @description Filter groups by permission level. Use `manage` for groups you can edit or `access` for all groups you can view. */
+        permission?: components['parameters']['Permission']
+        /** @description Filter groups by creator ID. Only groups owned by the specified ID are returned. */
+        creatorIds?: components['parameters']['CreatorIds']
+      }
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    requestBody?: never
+    responses: {
+      /** @description Returns a list of groups that match the specified search filters. */
+      200: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          'application/vnd.staffbase.accessors.groups-search.v1+json': components['schemas']['GroupsSearch']
+        }
+      }
+      401: components['responses']['NoToken']
+      403: components['responses']['NoPermission']
+    }
+  }
+  GetGroup: {
+    parameters: {
+      query?: never
+      header?: never
+      path: {
+        /** @description The unique identifier automatically generated by the Staffbase platform or the external identifier (`externalId`), if it is added for the group. */
+        groupId: components['parameters']['GroupId']
+      }
+      cookie?: never
+    }
+    requestBody?: never
+    responses: {
+      /** @description Group returned. */
+      200: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          'application/vnd.staffbase.accessors.group.v3+json': components['schemas']['Group']
+        }
+      }
+      401: components['responses']['NoToken']
+      404: components['responses']['NotFound']
+    }
+  }
+  DeleteGroup: {
+    parameters: {
+      query?: never
+      header?: never
+      path: {
+        /** @description The unique identifier automatically generated by the Staffbase platform or the external identifier (`externalId`), if it is added for the group. */
+        groupId: components['parameters']['GroupId']
+      }
+      cookie?: never
+    }
+    requestBody?: never
+    responses: {
+      /** @description Group deleted. */
+      204: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          'application/vnd.staffbase.accessors.group-delete.v2+json': unknown
+        }
+      }
+      401: components['responses']['NoToken']
+      404: components['responses']['NotFound']
+    }
+  }
+  PatchGroup: {
+    parameters: {
+      query?: never
+      header?: never
+      path: {
+        /** @description The unique identifier automatically generated by the Staffbase platform or the external identifier (`externalId`), if it is added for the group. */
+        groupId: components['parameters']['GroupId']
+      }
+      cookie?: never
+    }
+    requestBody?: {
+      content: {
+        'application/vnd.staffbase.accessors.group-update.v1+json': components['schemas']['GroupUpdate']
+      }
+    }
+    responses: {
+      /** @description Group updated. */
+      200: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          'application/vnd.staffbase.accessors.group.v3+json': components['schemas']['Group']
+        }
+      }
+      401: components['responses']['NoToken']
+      404: components['responses']['NotFound']
+    }
+  }
+  SearchMembersOfGroup: {
+    parameters: {
+      query?: {
+        /** @description The maximum number of results to return per page. */
+        limit?: components['parameters']['Limit']
+        /** @description Cursor for pagination. Use it to fetch the next or previous page of results. When a cursor is provided, only the `limit` parameter is applied. Changing other parameters affects pagination consistency. */
+        cursor?: components['parameters']['Cursor']
+        /** @description Search for a specific group and their name. */
+        query?: components['parameters']['Query']
+        /** @description Filter group members by their user status. The query parameter supports multiple values. For example, `?status=activated&status=pending` returns all members who are either registered on the platform or pending activation. */
+        status?: components['parameters']['UserStatus']
+      }
+      header?: never
+      path: {
+        /** @description The unique identifier automatically generated by the Staffbase platform or the external identifier (`externalId`), if it is added for the group. */
+        groupId: components['parameters']['GroupId']
+      }
+      cookie?: never
+    }
+    requestBody?: never
+    responses: {
+      /** @description Group members returned. */
+      200: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          'application/vnd.staffbase.accessors.group.members-search.v1+json': components['schemas']['UsersSearch']
+        }
+      }
+      401: components['responses']['NoToken']
+      404: components['responses']['NotFound']
+    }
+  }
+  PatchMembersOfGroup: {
+    parameters: {
+      query?: never
+      header?: never
+      path: {
+        /** @description The unique identifier automatically generated by the Staffbase platform or the external identifier (`externalId`), if it is added for the group. */
+        groupId: components['parameters']['GroupId']
+      }
+      cookie?: never
+    }
+    requestBody?: {
+      content: {
+        /**
+         * @example {
+         *       "userIds": [
+         *         "62dfa87d725db035a9a2278a",
+         *         "jane@examplecompany.com"
+         *       ]
+         *     }
+         */
+        'application/vnd.staffbase.accessors.group.members-add.v1+json': components['schemas']['GroupMemberIds']
+        /**
+         * @example {
+         *       "userIds": [
+         *         "62dfa87d725db035a9a2278a",
+         *         "jane@examplecompany.com"
+         *       ]
+         *     }
+         */
+        'application/vnd.staffbase.accessors.group.members-remove.v1+json': components['schemas']['GroupMemberIds']
+      }
+    }
+    responses: {
+      /** @description Group members updated. */
+      204: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          'application/vnd.staffbase.accessors.group.members-add.v1+json': unknown
+          'application/vnd.staffbase.accessors.group.members-remove.v1+json': unknown
+        }
+      }
+      401: components['responses']['NoToken']
+      404: components['responses']['NotFound']
+    }
+  }
 }

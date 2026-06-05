@@ -1,0 +1,8 @@
+export type { ResolveSupportedLanguageOptions } from '../types/i18n/ResolveSupportedLanguageOptions'
+export type { StaffbaseLocale } from '../types/i18n/StaffbaseLocale'
+export { defaultLocaleForLanguage } from './defaultLocaleForLanguage'
+export { getBrowserLanguage } from './getBrowserLanguage'
+export { isSupportedLocale } from './isSupportedLocale'
+export { normalizeLanguageCode } from './normalizeLanguageCode'
+export { resolveSupportedLanguage } from './resolveSupportedLanguage'
+export { STAFFBASE_LOCALES } from './staffbaseLocales'

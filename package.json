@@ -1,6 +1,6 @@
 {
   "name": "@favish/staffbase-utils",
-  "version": "0.17.0",
+  "version": "0.18.0",
   "description": "Shared internal/host utilities for Staffbase widgets",
   "author": "Favish <dev@favish.com>",
   "packageManager": "pnpm@11.5.0",
@@ -19,6 +19,11 @@
       "types": "./dist/src/content/index.d.ts",
       "import": "./dist/content.es.mjs",
       "require": "./dist/content.cjs.js"
+    },
+    "./i18n": {
+      "types": "./dist/src/i18n/index.d.ts",
+      "import": "./dist/i18n.es.mjs",
+      "require": "./dist/i18n.cjs.js"
     },
     "./log": {
       "types": "./dist/src/log/index.d.ts",
@@ -54,6 +59,26 @@
       "types": "./dist/src/widgets/index.d.ts",
       "import": "./dist/widgets.es.mjs",
       "require": "./dist/widgets.cjs.js"
+    },
+    "./news": {
+      "types": "./dist/src/news/index.d.ts",
+      "import": "./dist/news.es.mjs",
+      "require": "./dist/news.cjs.js"
+    },
+    "./react": {
+      "types": "./dist/src/react/index.d.ts",
+      "import": "./dist/react.es.mjs",
+      "require": "./dist/react.cjs.js"
+    },
+    "./storage": {
+      "types": "./dist/src/storage/index.d.ts",
+      "import": "./dist/storage.es.mjs",
+      "require": "./dist/storage.cjs.js"
+    },
+    "./text": {
+      "types": "./dist/src/text/index.d.ts",
+      "import": "./dist/text.es.mjs",
+      "require": "./dist/text.cjs.js"
     },
     "./links/react": {
       "types": "./dist/src/links/react/index.d.ts",
@@ -158,6 +183,7 @@
     "@types/jest": "^30.0.0",
     "@types/node": "^25",
     "@types/react": "19.2.16",
+    "@types/react-dom": "^19.2.3",
     "@typescript-eslint/eslint-plugin": "^8.60.0",
     "@typescript-eslint/parser": "^8.60.0",
     "eslint": "^10.4.0",

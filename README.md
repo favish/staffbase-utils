@@ -25,6 +25,10 @@ minimumReleaseAgeExclude:
 | --- | --- |
 | `@favish/staffbase-utils/api` | `fetchJson`, `fetchAllPaginated`, `ApiError` |
 | `@favish/staffbase-utils/content` | `resolveLocalizedContent`, `resolveActiveLanguage`, `detectEditorLanguage`, `detectPreviewLanguage` |
+| `@favish/staffbase-utils/i18n` | `STAFFBASE_LOCALES` (all 81 supported locales), `normalizeLanguageCode`, `resolveSupportedLanguage`, `isSupportedLocale`, `defaultLocaleForLanguage`, `getBrowserLanguage` |
+| `@favish/staffbase-utils/news` | `createNewsApi` (channels/articles/acknowledge service), `fetchChannels`, `fetchChannel`, `fetchArticles`, `fetchArticleById`, `fetchSpaceName`, `acknowledgeArticle`, `isArticlePublished`, `channelToOption` |
+| `@favish/staffbase-utils/text` | `truncateText`, `normalizeText`, `normalizeTextForSearch` |
+| `@favish/staffbase-utils/storage` | `createLocalStorageCache`, `canUseLocalStorage` |
 | `@favish/staffbase-utils/log` | `logError`, `logWarn`, `logDebug`, `setLoggingEnabled` |
 | `@favish/staffbase-utils/device` | `isMobile`, `isMobileOrWebview`, `isMobilePlatform`, `isMobileViewport`, `isNativeApp` |
 | `@favish/staffbase-utils/dom` | `getDynamicClasses` |
@@ -32,8 +36,9 @@ minimumReleaseAgeExclude:
 | `@favish/staffbase-utils/html` | `sanitizeHtml`, `sanitizeArticleHtml`, `cleanHTML`, `stripHtmlTags` |
 | `@favish/staffbase-utils/links` | `openStaffbaseAware`, `tryOpenWithStaffbase`, `normalizeInAppLinks`, `getInAppOpenLinkTarget`, `isAllowedIframeSrc`, `isSafeNavigationHref` |
 | `@favish/staffbase-utils/links/react` | `useInAppLinkHandling` (React peer) |
-| `@favish/staffbase-utils/widgets` | `renderWidgets` |
+| `@favish/staffbase-utils/widgets` | `renderWidgets`, `parseBooleanAttribute`, `parseEnumAttribute`, `parseStringAttribute`, `parseCommaSeparated`, `normalizeLegacyAttributes` |
 | `@favish/staffbase-utils/widgets/react` | `useRenderWidgets` (React peer) |
+| `@favish/staffbase-utils/react` | `createReactRoot`, `ErrorBoundary`, `ShadowStyle`, `useMediaQuery`, `useReducedMotion`, `useDebouncedValue`, `useClickOutside`, `useResetScrollPosition`, `useForceFullScreenOverlay`, `useOptimisticSet`, `usePaginatedList` (React peer) |
 | `@favish/staffbase-utils/shadow` | `injectShadowStyles`, `isShadowRoot` |
 | `@favish/staffbase-utils/shadow/portal` | `PortalContainerProvider`, `usePortalContainer` (React peer only, no Emotion) |
 | `@favish/staffbase-utils/shadow/react` | `ensureShadowMount` (+ re-exports portal) (React + @emotion/cache peers) |

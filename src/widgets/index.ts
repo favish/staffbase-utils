@@ -1,1 +1,6 @@
+export { normalizeLegacyAttributes } from './normalizeLegacyAttributes'
+export { parseBooleanAttribute } from './parseBooleanAttribute'
+export { parseCommaSeparated } from './parseCommaSeparated'
+export { parseEnumAttribute } from './parseEnumAttribute'
+export { parseStringAttribute } from './parseStringAttribute'
 export { renderWidgets } from './renderWidgets'

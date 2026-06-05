@@ -18,6 +18,7 @@ const entries = {
   links: resolve(__dirname, 'src/links/index.ts'),
   'links/react': resolve(__dirname, 'src/links/react/index.ts'),
   news: resolve(__dirname, 'src/news/index.ts'),
+  pagination: resolve(__dirname, 'src/pagination/index.ts'),
   react: resolve(__dirname, 'src/react/index.ts'),
   storage: resolve(__dirname, 'src/storage/index.ts'),
   text: resolve(__dirname, 'src/text/index.ts'),

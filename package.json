@@ -65,6 +65,11 @@
       "import": "./dist/news.es.mjs",
       "require": "./dist/news.cjs.js"
     },
+    "./pagination": {
+      "types": "./dist/src/pagination/index.d.ts",
+      "import": "./dist/pagination.es.mjs",
+      "require": "./dist/pagination.cjs.js"
+    },
     "./react": {
       "types": "./dist/src/react/index.d.ts",
       "import": "./dist/react.es.mjs",

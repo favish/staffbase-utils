@@ -29,6 +29,7 @@ minimumReleaseAgeExclude:
 | `@favish/staffbase-utils/news` | `createNewsApi` (channels/articles/acknowledge service), `fetchChannels`, `fetchChannel`, `fetchArticles`, `fetchArticleById`, `fetchSpaceName`, `acknowledgeArticle`, `isArticlePublished`, `channelToOption` |
 | `@favish/staffbase-utils/text` | `truncateText`, `normalizeText`, `normalizeTextForSearch` |
 | `@favish/staffbase-utils/storage` | `createLocalStorageCache`, `canUseLocalStorage` |
+| `@favish/staffbase-utils/pagination` | `decodeCursor`, `PaginationCursor`, `PaginatedResponse` (cursor pagination) |
 | `@favish/staffbase-utils/log` | `logError`, `logWarn`, `logDebug`, `setLoggingEnabled` |
 | `@favish/staffbase-utils/device` | `isMobile`, `isMobileOrWebview`, `isMobilePlatform`, `isMobileViewport`, `isNativeApp`, `isIOSTouchDevice`, `hasIosStaffbaseRuntime` |
 | `@favish/staffbase-utils/dom` | `getDynamicClasses` |

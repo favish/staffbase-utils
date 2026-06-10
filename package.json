@@ -15,6 +15,11 @@
       "import": "./dist/api.es.mjs",
       "require": "./dist/api.cjs.js"
     },
+    "./classic-editor": {
+      "types": "./dist/src/classic-editor/index.d.ts",
+      "import": "./dist/classic-editor.es.mjs",
+      "require": "./dist/classic-editor.cjs.js"
+    },
     "./content": {
       "types": "./dist/src/content/index.d.ts",
       "import": "./dist/content.es.mjs",
